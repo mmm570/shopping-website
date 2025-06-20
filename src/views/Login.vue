@@ -7,6 +7,7 @@
         <input type="password" placeholder="密碼" class="input" />
       </div>
       <div class="btn bg-[#704f39] text-white border-0" @click="login()">登入</div>
+      <router-link :to="{ name: 'register' }">註冊</router-link>
     </div>
   </div>
 </template>
@@ -22,5 +23,9 @@ function login() {
   const fakeToken = 'Bearer token'
   document.cookie = `token=${fakeToken}`
   router.push('/')
+}
+
+function toRegisterPage() {
+  router.push('/register')
 }
 </script>

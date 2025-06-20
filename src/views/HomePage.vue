@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="py-40 flex justify-center">
-      <div class="w-[80%] grid grid-flow-col grid-cols-8 grid-rows-3 gap-8">
+      <div class="w-[80%] grid grid-flow-col grid-cols-8 grid-rows-2 gap-8">
         <div class="col-span-2 row-span-3 bg-red-100">
           <div class="w-full h-full">
             <img src="../assets/texture/texture01.jpg" class="object-over w-full h-full" />
@@ -111,7 +111,7 @@
 import { ref } from 'vue'
 
 const specialOffers = ref({
-  title: ['賦活修護精華油', '激活肌膚修護力，深層滋養，喚醒細緻光澤。'],
+  title: ['賦活修護精華油', '每天早晨，給肌膚一份溫柔的禮物。富含玻尿酸與洋甘菊萃取，輕盈質地迅速滲透肌底，為肌膚注入源源水分，喚醒沉睡的光澤感。無酒精、無香料，敏弱肌也能安心使用。'],
 })
 const brandPurpose = ref({
   pure_leaf_drop: {
