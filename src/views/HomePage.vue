@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full">
-    <div class="relative bg-red-400">
+  <div class="w-full -mt-28">
+    <div class="relative">
       <img src="../assets/homePageImg.jpg" class="object-cover" />
-      <div class="w-full h-full absolute bottom-0 right-0 grid grid-cols-7">
+      <div class="w-full h-full absolute bottom-0 right-0 grid grid-cols-7 bg-white opacity-50">
         <div
           class="h-full flex justify-start items-center col-start-6 col-span-2 text-[2rem] font-bold text-[#704F39]"
         >
@@ -38,7 +38,7 @@
               >
             </div>
             <div class="w-full flex justify-end">
-              <button class="btn bg-[#969C92] text-white">新增到購物車</button>
+              <button class="btn bg-[#969C92] hover:bg-[#b2baad] text-white">新增到購物車</button>
             </div>
           </div>
         </div>
@@ -111,7 +111,10 @@
 import { ref } from 'vue'
 
 const specialOffers = ref({
-  title: ['賦活修護精華油', '每天早晨，給肌膚一份溫柔的禮物。富含玻尿酸與洋甘菊萃取，輕盈質地迅速滲透肌底，為肌膚注入源源水分，喚醒沉睡的光澤感。無酒精、無香料，敏弱肌也能安心使用。'],
+  title: [
+    '賦活修護精華油',
+    '每天早晨，給肌膚一份溫柔的禮物。富含玻尿酸與洋甘菊萃取，輕盈質地迅速滲透肌底，為肌膚注入源源水分，喚醒沉睡的光澤感。無酒精、無香料，敏弱肌也能安心使用。',
+  ],
 })
 const brandPurpose = ref({
   pure_leaf_drop: {

@@ -1,4 +1,5 @@
 @import './base.css';
+@import './customizeDaisyUI.css';
 @import 'tailwindcss';
 @plugin "daisyui";
 

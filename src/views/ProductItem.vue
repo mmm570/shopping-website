@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex justify-center">
+  <div class="w-full flex flex-col items-center justify-center gap-20">
     <div class="w-[60%] flex flex-col gap-10 mt-10">
       <div class="breadcrumbs text-sm">
         <ul>
@@ -43,11 +43,13 @@
         </div>
       </div>
     </div>
+    <otherProducts :products="products" />
   </div>
 </template>
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useShopCartStore } from '@/stores/shopCart'
+import otherProducts from '@/compontents/otherProducts.vue'
 
 const shopCart = useShopCartStore()
 const props = defineProps(['id'])

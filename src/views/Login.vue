@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="w-full h-[80%] flex justify-center items-center">
     <div class="bg-[#f4ede3] w-96 h-fit flex flex-col gap-10 items-center rounded-xl py-10">
@@ -7,7 +8,11 @@
         <input type="password" placeholder="密碼" class="input" />
       </div>
       <div class="btn bg-[#704f39] text-white border-0" @click="login()">登入</div>
-      <router-link :to="{ name: 'register' }">註冊</router-link>
+      <div class="text-[#704f39] text-sm">
+        尚未註冊？<router-link :to="{ name: 'register' }" class="underline font-semibold"
+          >立即註冊</router-link
+        >
+      </div>
     </div>
   </div>
 </template>

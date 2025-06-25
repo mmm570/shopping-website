@@ -1,0 +1,11 @@
+@utility input {
+  @apply border-none rounded-xl;
+}
+
+@utility btn {
+  @apply border-none rounded-xl hover:bg-[#a57e65];
+}
+
+a {
+  @apply hover:text-[#a57e65];
+}
