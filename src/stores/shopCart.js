@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 
 export const useShopCartStore = defineStore('shopCart', () => {
-  const products = useStorage('products', ['test'])
+  const products = useStorage('products', [])
 
   function addToShopCart(item) {
     products.value.push(item)

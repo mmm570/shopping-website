@@ -30,7 +30,7 @@ const router = createRouter({
           name: 'shopCart',
           component: () => import('../views/ShopCart.vue'),
           meta: {
-            requiresAuth: true,
+            requiresAuth: false,
           },
         },
         {
@@ -38,7 +38,7 @@ const router = createRouter({
           name: 'login',
           component: () => import('../views/Login.vue'),
           meta: {
-            requiresAuth: true,
+            requiresAuth: false,
           },
         },
         {

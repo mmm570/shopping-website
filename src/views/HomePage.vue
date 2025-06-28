@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full -mt-28">
+  <div class="w-full">
     <div class="relative">
       <img src="../assets/homePageImg.jpg" class="object-cover" />
       <div class="w-full h-full absolute bottom-0 right-0 grid grid-cols-7 bg-white opacity-50">
@@ -24,8 +24,8 @@
         </div>
         <div class="col-span-6 row-span-1 flex justify-end">
           <div class="flex flex-col justify-center gap-5 w-[400px] h-full px-10">
-            <div class="text-lg font-bold">[新品] {{ specialOffers.title[0] }}</div>
-            <div class="text-base w-fit">{{ specialOffers.title[1] }}</div>
+            <div class="text-lg font-bold">[新品] {{ specialOffers.title }}</div>
+            <div class="text-base w-fit">{{ specialOffers.description }}</div>
 
             <div class="w-full flex justify-end gap-3">
               <span
@@ -38,7 +38,12 @@
               >
             </div>
             <div class="w-full flex justify-end">
-              <button class="btn bg-[#969C92] hover:bg-[#b2baad] text-white">新增到購物車</button>
+              <button
+                class="btn bg-[#969C92] hover:bg-[#b2baad] text-white"
+                @click="shopCart.addToShopCart(specialOffers)"
+              >
+                新增到購物車
+              </button>
             </div>
           </div>
         </div>
@@ -109,12 +114,17 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useShopCartStore } from '@/stores/shopCart'
 
+const shopCart = useShopCartStore()
 const specialOffers = ref({
-  title: [
-    '賦活修護精華油',
-    '每天早晨，給肌膚一份溫柔的禮物。富含玻尿酸與洋甘菊萃取，輕盈質地迅速滲透肌底，為肌膚注入源源水分，喚醒沉睡的光澤感。無酒精、無香料，敏弱肌也能安心使用。',
-  ],
+  icon: 'product01',
+  id: 'P001',
+  title: '賦活修護精華油',
+  description:
+    '天早晨，給肌膚一份溫柔的禮物。富含玻尿酸與洋甘菊萃取，輕盈質地迅速滲透肌底，為肌膚注入源源水分，喚醒沉睡的光澤感。無酒精、無香料，敏弱肌也能安心使用。',
+  price: '$980',
+  promotion: '首購享88折＋贈旅行瓶5ml',
 })
 const brandPurpose = ref({
   pure_leaf_drop: {
