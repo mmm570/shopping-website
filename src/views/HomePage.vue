@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full -mt-20">
     <div class="relative">
       <img src="../assets/homePageImg.jpg" class="object-cover" />
       <div class="w-full h-full absolute bottom-0 right-0 grid grid-cols-7 bg-white opacity-50">
@@ -15,6 +15,7 @@
         來自大自然的溫和能量，LIWO 採用嚴選植萃精華，讓肌膚深呼吸，回歸健康透亮。
       </div>
     </div>
+    <button class="btn" @click="shopCart.resetShopCart()">99</button>
     <div class="py-40 flex justify-center">
       <div class="w-[80%] grid grid-flow-col grid-cols-8 grid-rows-2 gap-8">
         <div class="col-span-2 row-span-3 bg-red-100">
@@ -22,6 +23,7 @@
             <img src="../assets/texture/texture01.jpg" class="object-over w-full h-full" />
           </div>
         </div>
+
         <div class="col-span-6 row-span-1 flex justify-end">
           <div class="flex flex-col justify-center gap-5 w-[400px] h-full px-10">
             <div class="text-lg font-bold">[新品] {{ specialOffers.title }}</div>
@@ -64,7 +66,7 @@
         </div>
       </div>
     </div>
-    <div class="py-40 flex justify-center bg-[#f4ede3] bg-cover bg-center">
+    <div class="w-full py-40 flex justify-center bg-[#f4ede3] bg-cover bg-center">
       <div class="grid grid-cols-6 gap-10 justify-center w-[80%]">
         <template v-for="item in products" :key="item.icon">
           <router-link :to="`/productItem/${item.id}`" class="black">
@@ -84,7 +86,9 @@
         </template>
       </div>
     </div>
-    <div class="py-40 flex justify-center bg-[url(/src/assets/plant.jpg)] bg-cover bg-center">
+    <div
+      class="w-full py-40 flex justify-center bg-[url(/src/assets/plant.jpg)] bg-cover bg-center"
+    >
       <div class="w-[80%] flex flex-col gap-16">
         <div class="text-[3.5rem] text- font-mono text-center font-bold">OUR PHILOSOPHY</div>
         <div class="grid grid-cols-4 gap-20 justify-between px-20">
@@ -123,7 +127,7 @@ const specialOffers = ref({
   title: '賦活修護精華油',
   description:
     '天早晨，給肌膚一份溫柔的禮物。富含玻尿酸與洋甘菊萃取，輕盈質地迅速滲透肌底，為肌膚注入源源水分，喚醒沉睡的光澤感。無酒精、無香料，敏弱肌也能安心使用。',
-  price: '$980',
+  price: '980',
   promotion: '首購享88折＋贈旅行瓶5ml',
 })
 const brandPurpose = ref({

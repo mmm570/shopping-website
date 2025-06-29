@@ -1,6 +1,7 @@
 <template>
   <div class="w-full flex items-center justify-between px-10 py-3 bg-[#f2e1d7]">
-    <router-link :to="`/`"> <img src="../assets/logo.png" class="h-5" /></router-link>
+    <div></div>
+    <router-link :to="`/`"><img src="../assets/logo.png" class="h-5" /></router-link>
     <div class="flex gap-5">
       <div class="indicator">
         <span

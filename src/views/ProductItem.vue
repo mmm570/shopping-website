@@ -7,13 +7,13 @@
           <li>{{ productItem.title }}</li>
         </ul>
       </div>
-      <div class="flex gap-10">
+      <div class="flex justify-between w-full">
         <img
           :src="`/src/assets/products/${productItem.icon}.jpg`"
           alt=""
           class="object-cover w-96 h-96"
         />
-        <div class="flex flex-col justify-between">
+        <div class="flex flex-col justify-between w-[55%]">
           <div class="flex flex-col gap-5">
             <div class="text-2xl font-bold">{{ productItem.title }}</div>
             <div class="flex">
@@ -28,14 +28,21 @@
                 ></div>
               </template>
             </div>
-            <div>{{ productItem.description }}</div>
+            <div class="text-zinc-400">{{ productItem.description }}</div>
             <div>$ {{ productItem.price }}</div>
             <div class="text-[#704f39] text-sm">#{{ productItem.promotion }}</div>
           </div>
-          <div class="w-full flex justify-end">
+          <div class="w-full flex justify-end gap-10">
+            <div class="flex gap-3 items-center">
+              <input
+                type="number"
+                v-model="count"
+                class="input border border-zinc-200 px-3 w-20 focus:outline-0"
+              />個
+            </div>
             <div
               class="btn bg-[#704f39] text-white w-fit px-5"
-              @click="shopCart.addToShopCart(productItem)"
+              @click="shopCart.addToShopCart(productItem, count)"
             >
               加入購物車
             </div>
@@ -43,14 +50,15 @@
         </div>
       </div>
     </div>
-    <otherProducts :products="products" />
+    <otherProducts :products="products" :productId="props.id" />
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useShopCartStore } from '@/stores/shopCart'
 import otherProducts from '@/compontents/otherProducts.vue'
 
+const count = ref(1)
 const shopCart = useShopCartStore()
 const props = defineProps(['id'])
 const productItem = ref({})
@@ -165,7 +173,16 @@ const products = ref([
   },
 ])
 
+watch(
+  () => props.id,
+  () => {
+    setProductItem()
+  },
+  { deep: true },
+)
+
 function setProductItem() {
+  count.value = 1
   productItem.value = products.value.find((item) => {
     return item.id === props.id
   })

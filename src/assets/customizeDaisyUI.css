@@ -1,9 +1,9 @@
 @utility input {
-  @apply border-none rounded-xl;
+  @apply rounded-xl;
 }
 
 @utility btn {
-  @apply border-none rounded-xl hover:bg-[#a57e65];
+  @apply border-none rounded-xl hover:bg-[#a57e65]  hover:text-[#a57e65];
 }
 
 a {
