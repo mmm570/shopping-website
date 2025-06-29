@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col items-center justify-center gap-20">
+  <div class="w-full flex flex-col items-center justify-center gap-20 py-20">
     <div class="w-[60%] flex flex-col gap-10 mt-10">
       <div class="breadcrumbs text-sm">
         <ul>
@@ -35,8 +35,10 @@
           <div class="w-full flex justify-end gap-10">
             <div class="flex gap-3 items-center">
               <input
+                @keydown="onKeydown"
+                @input="onInput"
                 type="number"
-                v-model="count"
+                v-model.number="count"
                 class="input border border-zinc-200 px-3 w-20 focus:outline-0"
               />個
             </div>
@@ -58,6 +60,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useShopCartStore } from '@/stores/shopCart'
 import otherProducts from '@/compontents/otherProducts.vue'
 
+// const
 const count = ref(1)
 const shopCart = useShopCartStore()
 const props = defineProps(['id'])
@@ -181,8 +184,28 @@ watch(
   { deep: true },
 )
 
+function onKeydown(event) {
+  // 限制輸入
+  const invalid = ['e', 'E', '+', '-', '.']
+
+  if (invalid.includes(event.key)) {
+    event.preventDefault()
+  }
+}
+
+function onInput(event) {
+  let val = event.target.value
+
+  if (val === '' || val === '0') {
+    val = 1
+  }
+
+  count.value = val
+}
+
 function setProductItem() {
   count.value = 1
+
   productItem.value = products.value.find((item) => {
     return item.id === props.id
   })

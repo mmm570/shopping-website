@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full -mt-20">
+  <div class="w-full">
     <div class="relative">
       <img src="../assets/homePageImg.jpg" class="object-cover" />
       <div class="w-full h-full absolute bottom-0 right-0 grid grid-cols-7 bg-white opacity-50">

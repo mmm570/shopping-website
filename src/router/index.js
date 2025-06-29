@@ -46,6 +46,14 @@ const router = createRouter({
           name: 'register',
           component: () => import('../views/Register.vue'),
         },
+        {
+          path: '/checkout',
+          name: 'checkout',
+          component: () => import('../views/Checkout.vue'),
+          meta: {
+            requiresAuth: true,
+          },
+        },
       ],
     },
   ],
@@ -58,7 +66,6 @@ router.beforeEach((to, from, next) => {
   const isLogin = document.cookie !== ''
 
   if (!to.meta.requiresAuth) {
-    console.log(isLogin, 1)
     next()
   } else if (to.name !== 'login' && !isLogin) {
     console.log(isLogin, 2)

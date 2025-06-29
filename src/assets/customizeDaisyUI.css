@@ -3,9 +3,9 @@
 }
 
 @utility btn {
-  @apply border-none rounded-xl hover:bg-[#a57e65]  hover:text-[#a57e65];
+  @apply border-none rounded-xl hover:bg-[#a57e65];
 }
 
-a {
+/* a {
   @apply hover:text-[#a57e65];
-}
+} */

@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-screen flex flex-col items-center">
     <AppBar class="z-40 w-full" />
-    <ViewPage class="z-10 w-full flex flex-col items-center py-20" />
+    <ViewPage class="z-10 w-full flex flex-col items-center" />
   </div>
 </template>
 

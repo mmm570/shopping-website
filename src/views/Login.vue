@@ -9,7 +9,9 @@
       </div>
       <div class="btn bg-[#704f39] text-white border-0" @click="login()">登入</div>
       <div class="text-[#704f39] text-sm">
-        尚未註冊？<router-link :to="{ name: 'register' }" class="underline font-semibold"
+        尚未註冊？<router-link
+          :to="{ name: 'register' }"
+          class="underline font-semibold hover:text-[#a57e65]"
           >立即註冊</router-link
         >
       </div>
@@ -28,9 +30,5 @@ function login() {
   const fakeToken = 'Bearer token'
   document.cookie = `token=${fakeToken}`
   router.push('/')
-}
-
-function toRegisterPage() {
-  router.push('/register')
 }
 </script>
