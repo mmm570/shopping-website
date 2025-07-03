@@ -10,7 +10,26 @@
         >
           <div>{{ shopCart.products.length }}</div>
         </span>
-        <ShoppingCartIcon class="text-[#704F39] size-7" @click="toShopCartPage" />
+        <div class="drawer drawer-end">
+          <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+          <div class="drawer-content">
+            <label for="my-drawer" class="drawer-button">
+              <ShoppingCartIcon class="text-[#704F39] size-7" @click="toShopCartPage" />
+            </label>
+          </div>
+          <div class="drawer-side">
+            <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+            <!-- <div>{{ shopCart.products }}</div> -->
+            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+              <template v-for="item in shopCart.products" :key="item.id">
+                <li>
+                  <router-link :to="`/productItem/${item.id}`">{{ item }}</router-link>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </div>
+        <!-- <ShoppingCartIcon class="text-[#704F39] size-7" @click="toShopCartPage" /> -->
       </div>
 
       <div class="dropdown dropdown-end" v-if="isLogin">

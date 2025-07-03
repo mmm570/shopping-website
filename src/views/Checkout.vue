@@ -1,5 +1,5 @@
 <template>
-  <div class="py-20 w-full flex flex-col justify-center">
+  <div class="py-20 w-[60%] flex flex-col justify-center bg-red-300">
     <div class="w-[35%] flex flex-col justify-center gap-5">
       <div class="border-b border-[#969C92]">
         <div class="text-[#969C92] font-bold">購買人資訊</div>

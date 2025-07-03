@@ -1,72 +1,65 @@
 <template>
-  <div class="w-[60%] flex flex-col items-center justify-center gap-20 py-20">
-    <div class="w-full flex flex-col gap-10 mt-10">
-      <div class="breadcrumbs text-sm">
-        <ul>
-          <li>
-            <router-link to="/products" class="text-[#704f39] underline">所有產品</router-link>
-          </li>
-          <li>{{ productItem.title }}</li>
-        </ul>
-      </div>
-      <div class="flex justify-between w-full">
-        <img
-          :src="`/src/assets/products/${productItem.icon}.jpg`"
-          alt=""
-          class="object-cover w-96 h-96"
-        />
-        <div class="flex flex-col justify-between w-[55%]">
-          <div class="flex flex-col gap-5">
-            <div class="text-2xl font-bold">{{ productItem.title }}</div>
-            <div class="flex">
-              <template v-for="item in [...Array(5).keys()]" :key="item">
-                <div
-                  class="h-8 mask mask-star-2"
-                  :class="`${productItem.score >= item + 1 ? 'bg-[#704f39]' : 'bg-gray-300 '} ${productItem.score - item - 1 === 0.5 ? 'mask-half-1 w-4' : 'w-8'}`"
-                ></div>
-                <div
-                  v-if="productItem.score - item - 1 === 0.5"
-                  class="h-8 w-4 mask mask-star-2 bg-gray-300 mask-half-2"
-                ></div>
-              </template>
-            </div>
-            <div class="text-zinc-400">{{ productItem.description }}</div>
-            <div>$ {{ productItem.price }}</div>
-            <div class="text-[#704f39] text-sm">#{{ productItem.promotion }}</div>
-          </div>
-          <div class="w-full flex justify-end gap-10">
-            <div class="flex gap-3 items-center">
-              <input
-                @keydown="onKeydown"
-                @input="onInput"
-                type="number"
-                v-model.number="count"
-                class="input border border-zinc-200 px-3 w-20 focus:outline-0"
-              />個
-            </div>
-            <div
-              class="btn bg-[#704f39] text-white w-fit px-5"
-              @click="shopCart.addToShopCart(productItem, count)"
-            >
-              加入購物車
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="py-10 w-[60%]">
+    <div class="w-full border-b border-[#969C92] pb-2 mb-8 flex justify-between">
+      <div class="text-[#969C92] font-bold text-xl">排序方式</div>
+      <label class="swap">
+        <input
+          type="checkbox"
+          v-model="arrangement"
+          :true-value="'list'"
+          :false-value="'squares'" />
+        <ListBulletIcon class="swap-on fill-current size-6 text-[#969C92]" />
+        <Squares2X2Icon class="swap-off fill-current size-6 text-[#969C92]"
+      /></label>
     </div>
-    <otherProducts :products="products" :productId="props.id" />
+    <template v-if="arrangement === 'squares'">
+      <div class="w-full grid grid-cols-3 gap-y-10">
+        <template v-for="item in products" :key="item.id">
+          <router-link :to="`/productItem/${item.id}`">
+            <div class="shadow border border-zinc-200 rounded-xl w-[15rem] justify-self-center">
+              <img
+                :src="`/src/assets/products/${item.icon}.jpg`"
+                alt=""
+                class="object-cover rounded-t-xl size-[15rem]"
+              />
+              <div class="rounded-b-xl bg-white px-4 py-2 flex justify-between w-[15rem]">
+                <div class="font-bold text-[#704f39]">
+                  {{ item.title }}
+                </div>
+                <div class="text-sm text-zinc-500">$ {{ item.price }}</div>
+              </div>
+            </div></router-link
+          >
+        </template>
+      </div></template
+    >
+    <template v-else>
+      <div class="flex flex-col gap-10 w-full items-center">
+        <template v-for="item in products" :key="item.id">
+          <router-link :to="`/productItem/${item.id}`" class="w-[60%]">
+            <div class="flex rounded-xl border border-zinc-200 shadow-sm">
+              <img
+                :src="`/src/assets/products/${item.icon}.jpg`"
+                alt=""
+                class="object-cover rounded-l-xl size-[15rem]"
+              />
+              <div class="rounded-r-xl px-4 py-2 flex flex-col justify-between grow">
+                <div class="font-bold text-[#704f39]">
+                  {{ item.title }}
+                </div>
+                <div class="text-right text-sm text-zinc-500">$ {{ item.price }}</div>
+              </div>
+            </div>
+          </router-link>
+        </template>
+      </div>
+    </template>
   </div>
 </template>
 <script setup>
-import { onMounted, ref, watch } from 'vue'
-import { useShopCartStore } from '@/stores/shopCart'
-import otherProducts from '@/compontents/otherProducts.vue'
-
-// const
-const count = ref(1)
-const shopCart = useShopCartStore()
-const props = defineProps(['id'])
-const productItem = ref({})
+import { ref } from 'vue'
+import { Squares2X2Icon, ListBulletIcon } from '@heroicons/vue/24/solid'
+const arrangement = ref('squares')
 const products = ref([
   {
     icon: 'product01',
@@ -177,43 +170,4 @@ const products = ref([
     score: 4.5,
   },
 ])
-
-watch(
-  () => props.id,
-  () => {
-    setProductItem()
-  },
-  { deep: true },
-)
-
-function onKeydown(event) {
-  // 限制輸入
-  const invalid = ['e', 'E', '+', '-', '.']
-
-  if (invalid.includes(event.key)) {
-    event.preventDefault()
-  }
-}
-
-function onInput(event) {
-  let val = event.target.value
-
-  if (val === '' || val === '0') {
-    val = 1
-  }
-
-  count.value = val
-}
-
-function setProductItem() {
-  count.value = 1
-
-  productItem.value = products.value.find((item) => {
-    return item.id === props.id
-  })
-}
-
-onMounted(() => {
-  setProductItem()
-})
 </script>

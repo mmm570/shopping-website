@@ -1,6 +1,6 @@
 <template>
-  <div class="w-[60%] border-b border-[#969C92]">
-    <div class="text-[#969C92] font-bold">其他相關產品</div>
+  <div class="w-full border-b border-[#969C92]">
+    <div class="text-[#969C92] font-bold px-10">其他相關產品</div>
   </div>
   <div class="carousel w-full m-10 py-5">
     <template v-for="(grop, index) in gropProducts" :key="index">

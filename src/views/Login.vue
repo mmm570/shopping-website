@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="w-full h-[80%] flex justify-center items-center">
+  <div class="w-full h-full flex justify-center items-center">
     <div class="bg-[#f4ede3] w-96 h-fit flex flex-col gap-10 items-center rounded-xl py-10">
       <div class="text-2xl font-bold text-[#704f39]">登入</div>
       <div class="flex flex-col gap-10">

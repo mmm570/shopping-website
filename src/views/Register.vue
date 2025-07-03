@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-[80%] flex justify-center items-center">
+  <div class="w-[60%] bg-red-300 h-[80%] flex justify-center items-center">
     <div class="bg-[#f4ede3] w-[25rem] h-fit flex flex-col gap-10 items-center rounded-xl py-10">
       <div class="text-2xl font-bold text-[#704f39]">註冊</div>
       <form @submit.prevent="onSubmit" class="flex flex-col items-center w-full">
