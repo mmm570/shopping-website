@@ -20,25 +20,49 @@
           </div>
           <div class="drawer-side">
             <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-            <!-- <div>{{ shopCart.products }}</div> -->
-            <ul class="menu bg-base-200 text-base-content min-h-full w-fit p-4">
-              <template v-for="item in shopCart.products" :key="item.id">
-                <li>
-                  <div class="flex p-4 rounded-xl active:bg-red-300">
-                    <!-- <router-link :to="`/productItem/${item.id}`" class="flex"> -->
-                    <img
-                      :src="`/src/assets/products/${item.icon}.jpg`"
-                      alt=""
-                      class="object-cover rounded-xl size-[10rem]"
-                    />
-                    <div class="text-base font-medium">
-                      {{ item.title }}
-                    </div>
-                    <!-- </router-link> -->
-                  </div>
-                </li>
-              </template>
-            </ul>
+            <div class="relative h-full overflow-hidden flex flex-col">
+              <ul class="bg-white text-base-content h-full overflow-y-scroll w-fit p-4">
+                <template v-for="item in shopCart.products" :key="item.id">
+                  <li class="rounded-xl hover:bg-zinc-200 active:bg-zinc-300">
+                    <!-- <div class="flex"> -->
+                    <router-link
+                      :to="`/productItem/${item.id}`"
+                      class="flex p-4 gap-2"
+                      @click="isOpenDrawer = false"
+                    >
+                      <img
+                        :src="`/src/assets/products/${item.icon}.jpg`"
+                        alt=""
+                        class="object-cover rounded-xl size-[10rem]"
+                      />
+                      <div class="flex flex-col justify-between py-3">
+                        <div class="text-base font-medium">
+                          {{ item.title }}
+                        </div>
+                        <div>
+                          <input
+                            class="input border border-zinc-200 px-3 w-20 focus:outline-0"
+                            type="number"
+                            v-model="item.count"
+                          />
+                        </div>
+                        <div class="text-right">$ {{ item.price }}</div>
+                      </div>
+                    </router-link>
+                  </li>
+                </template>
+              </ul>
+              <div
+                class="sticky bottom-0 left-0 w-full bg-white/80 shadow flex items-center justify-end p-2"
+              >
+                <button
+                  class="btn bg-[#969C92] hover:bg-[#b2baad] text-white w-fit"
+                  @click="toShopCartPage()"
+                >
+                  進入購物車
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -75,9 +99,15 @@
 </template>
 
 <style scoped>
-.menu :where(li > .active) {
-  background-color: transparent !important;
-}
+/* .menu {
+  & :where(li) {
+    & > :not(ul, .menu-title, details, .btn):active,
+    & > :not(ul, .menu-title, details, .btn).menu-active,
+    & > details > summary:active {
+      background-color: transparent !important;
+    }
+  }
+} */
 </style>
 
 <script setup>
