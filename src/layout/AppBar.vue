@@ -6,32 +6,42 @@
       <div class="indicator">
         <span
           class="indicator-item badge badge-xs badge-secondary"
-          v-if="shopCart.products.length !== 0"
+          v-if="shopCart.products.length !== 0 && !isOpenDrawer"
         >
           <div>{{ shopCart.products.length }}</div>
         </span>
         <div class="drawer drawer-end">
-          <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+          <input id="my-drawer" type="checkbox" class="drawer-toggle" v-model="isOpenDrawer" />
           <div class="drawer-content">
             <label for="my-drawer" class="drawer-button">
-              <ShoppingCartIcon class="text-[#704F39] size-7" @click="toShopCartPage" />
+              <ShoppingCartIcon class="text-[#704F39] size-7" />
+              <!-- @click="toShopCartPage" -->
             </label>
           </div>
           <div class="drawer-side">
             <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
             <!-- <div>{{ shopCart.products }}</div> -->
-            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+            <ul class="menu bg-base-200 text-base-content min-h-full w-fit p-4">
               <template v-for="item in shopCart.products" :key="item.id">
                 <li>
-                  <router-link :to="`/productItem/${item.id}`">{{ item }}</router-link>
+                  <div class="flex p-4 rounded-xl active:bg-red-300">
+                    <!-- <router-link :to="`/productItem/${item.id}`" class="flex"> -->
+                    <img
+                      :src="`/src/assets/products/${item.icon}.jpg`"
+                      alt=""
+                      class="object-cover rounded-xl size-[10rem]"
+                    />
+                    <div class="text-base font-medium">
+                      {{ item.title }}
+                    </div>
+                    <!-- </router-link> -->
+                  </div>
                 </li>
               </template>
             </ul>
           </div>
         </div>
-        <!-- <ShoppingCartIcon class="text-[#704F39] size-7" @click="toShopCartPage" /> -->
       </div>
-
       <div class="dropdown dropdown-end" v-if="isLogin">
         <div tabindex="0" role="button">
           <UserIcon class="text-[#704F39] size-7" />
@@ -63,6 +73,13 @@
     </div>
   </div> -->
 </template>
+
+<style scoped>
+.menu :where(li > .active) {
+  background-color: transparent !important;
+}
+</style>
+
 <script setup>
 import router from '@/router'
 import { ShoppingCartIcon, ArrowLeftEndOnRectangleIcon, UserIcon } from '@heroicons/vue/24/solid'
@@ -73,6 +90,7 @@ import { useShopCartStore } from '@/stores/shopCart'
 const shopCart = useShopCartStore()
 const isLogin = ref(false)
 const userStore = useUserStore()
+const isOpenDrawer = ref(false)
 
 watch(
   () => userStore.isLogin,

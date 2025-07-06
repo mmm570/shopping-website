@@ -9,3 +9,16 @@
 /* a {
   @apply hover:text-[#a57e65];
 } */
+/* @utility menu:active {
+  @apply bg-red-300;
+} */
+
+/* @utility li {
+  @apply active:bg-transparent;
+} */
+
+/* @layer utilities {
+  .menu :where(li > .active) {
+    background-color: transparent !important;
+  }
+} */
