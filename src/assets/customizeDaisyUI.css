@@ -2,6 +2,10 @@
   @apply rounded-xl;
 }
 
+@utility select {
+  @apply rounded-xl;
+}
+
 @utility btn {
   @apply border-none rounded-xl hover:bg-[#a57e65];
 }

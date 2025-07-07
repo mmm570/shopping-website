@@ -5,6 +5,7 @@
   </div>
 </template>
 <script setup>
+// data
 const value = defineModel('value')
 const props = defineProps(['errorText', 'placeholder'])
 </script>

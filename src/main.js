@@ -30,4 +30,8 @@ app.provide('hintAlert', {
     })
   },
 })
+
+app.provide('deepClone', (value) => {
+  return JSON.parse(JSON.stringify(value))
+})
 app.mount('#app')

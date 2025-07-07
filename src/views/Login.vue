@@ -23,8 +23,10 @@
 import router from '@/router'
 import { useUserStore } from '@/stores/user'
 
+// data
 const userStore = useUserStore()
 
+// methods
 function login() {
   userStore.login()
   const fakeToken = 'Bearer token'

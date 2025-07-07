@@ -14,7 +14,7 @@
             />
             <div class="card-body p-4">
               <h2 class="card-title text-sm">{{ item.title }}</h2>
-              <p class="text-zinc-500 text-sm">$ {{ item.price }}</p>
+              <p class="text-zinc-500 text-sm">$ {{ item.price.toLocaleString() }}</p>
             </div>
           </div></template
         >
@@ -40,13 +40,10 @@
 import router from '@/router'
 import { computed } from 'vue'
 
+// data
 const props = defineProps(['products', 'productId'])
 
-function tpPage(id) {
-  router.push(`/productItem/${id}`)
-}
-
-// 將產品分成每 3 筆一組
+// computed
 const gropProducts = computed(() => {
   const gropSize = 3
   const grops = []
@@ -60,4 +57,9 @@ const gropProducts = computed(() => {
 
   return grops
 })
+
+// methods
+function tpPage(id) {
+  router.push(`/productItem/${id}`)
+}
 </script>

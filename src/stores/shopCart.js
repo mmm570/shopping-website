@@ -3,25 +3,24 @@ import { useStorage } from '@vueuse/core'
 import Swal from 'sweetalert2'
 
 export const useShopCartStore = defineStore('shopCart', () => {
-  const products = useStorage('products', [])
+  const products = useStorage('products', {})
 
   function addToShopCart(item, count = 1) {
     const product = {
       icon: item.icon,
-      id: item.id,
       title: item.title,
       price: item.price,
       count: count,
     }
 
-    const productIndex = products.value.findIndex((value) => {
-      return value.id === product.id
+    const productIndex = Object.keys(products.value).findIndex((key) => {
+      return key === product.id
     })
 
     if (productIndex !== -1) {
-      products.value[productIndex].count += count
+      products.value[item.id].count += count
     } else {
-      products.value.push(product)
+      products.value[item.id] = product
     }
 
     Swal.fire({
@@ -33,7 +32,7 @@ export const useShopCartStore = defineStore('shopCart', () => {
   }
 
   function resetShopCart() {
-    products.value = []
+    products.value = {}
   }
 
   return { products, addToShopCart, resetShopCart }

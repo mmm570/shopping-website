@@ -10,7 +10,7 @@ const schema = yup.object({
 })
 
 // 封裝 useForm 與欄位
-export function useMyForm(initialValues = {}) {
+export function useCreatedUserForm(initialValues = {}) {
   const { handleSubmit } = useForm({
     validationSchema: toTypedSchema(schema),
     initialValues, //設定初始值

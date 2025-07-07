@@ -22,21 +22,6 @@
         </div>
         <button type="submit" class="btn bg-[#704f39] text-white border-0">送出</button>
       </form>
-      <!-- <form @submit.prevent="onSubmit" class="flex flex-col items-center">
-        <div class="flex flex-col gap-5 mb-10">
-          <InputFiled
-            v-model:value="user.name"
-            :errorText="formData.name.errorMessage"
-            :placeholder="'帳號'"
-          />
-          <InputFiled
-            v-model:value="user.email"
-            :errorText="formData.email.errorMessage"
-            :placeholder="'密碼'"
-          />
-        </div>
-        <button type="submit" class="btn bg-[#704f39] text-white border-0">送出</button>
-      </form> -->
     </div>
   </div>
 </template>
@@ -44,19 +29,20 @@
 <script setup>
 import { reactive } from 'vue'
 import InputFiled from '@/compontents/tools/inputFiled.vue'
-import { useMyForm } from '@/js/validate'
+import { useCreatedUserForm } from '@/validate/createdUser'
 
+// data
 const registerUser = reactive({
   name: null,
   email: null,
 })
-const { formData, handleSubmit } = useMyForm(registerUser)
-
+const { formData, handleSubmit } = useCreatedUserForm(registerUser)
 const user = reactive({
   name: formData.name.value,
   email: formData.email.value,
 })
 
+// methods
 const onSubmit = handleSubmit((values) => {
   console.log('送出成功，表單資料：', values)
 })
